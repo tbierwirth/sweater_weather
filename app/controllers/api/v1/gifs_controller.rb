@@ -2,7 +2,7 @@ class Api::V1::GifsController < ApplicationController
   def index
     coords = coordinates(location)
     forecast ||= Forecast.new(forecast(coords[:lat], coords[:lng]), location)
-    gifs = GifService.new.get_gifs(forecast[:daily])
+    gifs = GifService.new.get_gifs(forecast.daily)
     render json: GifsSerializer.new(gifs)
   end
 
