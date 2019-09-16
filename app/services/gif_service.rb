@@ -1,11 +1,6 @@
 class GifService
-  def get_gifs(forecast)
-    forecast[:data].map do |daily|
-      time = daily[:time]
-      summary = daily[:summary]
-      url = get_json("?q=#{daily[:summary]}")[:data].first[:url]
-      Gif.new(time, summary, url)
-    end
+  def get_gif(summary)
+    get_json("?q=#{summary}")[:data]
   end
 
   private
