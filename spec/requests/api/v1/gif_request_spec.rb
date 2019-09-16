@@ -28,12 +28,12 @@ describe 'GIF API' do
     expect(response).to be_successful
 
     parsed = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
-    expect(parsed[:data][:images][0][:time]).to eq("1568527200")
-    expect(parsed[:data][:images][0][:summary]).to eq("Mostly cloudy throughout the day.")
-    expect(parsed[:data][:images][0][:url]).to eq("https://giphy.com/gifs/dark-castle-63xBFHKNVjZlu")
-    expect(parsed[:data][:images][1][:time]).to eq("1568613600")
-    expect(parsed[:data][:images][1][:summary]).to eq("Partly cloudy throughout the day.")
-    expect(parsed[:data][:images][1][:url]).to eq("https://giphy.com/gifs/beach-clouds-aQ7kognlRPDzi")
+
+    expect(parsed[:data][0][:attributes][:time]).to eq(1568527200)
+    expect(parsed[:data][0][:attributes][:summary]).to eq("Mostly cloudy throughout the day.")
+    expect(parsed[:data][0][:attributes][:url]).to eq("https://giphy.com/gifs/dark-castle-63xBFHKNVjZlu")
+    expect(parsed[:data][1][:attributes][:time]).to eq(1568613600)
+    expect(parsed[:data][1][:attributes][:summary]).to eq("Partly cloudy throughout the day.")
+    expect(parsed[:data][1][:attributes][:url]).to eq("https://giphy.com/gifs/beach-clouds-aQ7kognlRPDzi")
   end
 end
