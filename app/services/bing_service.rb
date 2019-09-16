@@ -23,7 +23,6 @@ class BingService
     uri.query = URI.encode_www_form({
         'q' => "#{@location},background",
         'imageType' => 'photo',
-        'license' => 'public',
         'minWidth' => '1024',
         'minHeight' => '768'
     })
