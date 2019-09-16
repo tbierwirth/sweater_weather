@@ -1,5 +1,6 @@
 class Gif
-  attr_reader :id, :time, :summary, :url
+  include ActiveModel::Serialization
+  attr_reader :time, :summary, :url
 
   def initialize(time, summary, url)
     @time = time
