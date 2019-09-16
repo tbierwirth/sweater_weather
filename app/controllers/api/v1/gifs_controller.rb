@@ -2,9 +2,9 @@ class Api::V1::GifsController < ApplicationController
   def index
     coords = coordinates(location)
     forecast ||= Forecast.new(forecast(coords[:lat], coords[:lng]), location)
-    gifs = GifSearch.new(forecast.daily).get_gifs
+    gifs = GifSearch.new(forecast.daily).response
 
-    render :json => gifs, each_serializer: GifSerializer
+    render :json => gifs
   end
 
   private
