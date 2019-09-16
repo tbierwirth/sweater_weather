@@ -1,6 +1,9 @@
 class BingService
   def get_images(location)
-    get_json("/images/search?q=#{location}")
+    images = get_json("/images/search?q=#{location},background&imageType=photo&license=public&minHeight=768&minWidth=1024")[:value]
+    images.map do |image|
+      BackgroundImage.new(image)
+    end
   end
 
   private
