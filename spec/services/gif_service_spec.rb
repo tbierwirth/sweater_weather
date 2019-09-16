@@ -2,9 +2,17 @@ require 'rails_helper'
 
 RSpec.describe GoogleService do
   before :each do
-    mostly_cloudy = File.open('./spec/fixtures/partly_cloudy.json')
+    clear = File.open('./spec/fixtures/clear.json')
+    stub_request(:get, "https://api.giphy.com/v1/gifs/search?api_key=#{ENV['GIPHY_API_KEY']}&q=Clear%20throughout%20the%20day.").
+      to_return(status: 200, body: clear)
+
+    mostly_cloudy = File.open('./spec/fixtures/mostly_cloudy.json')
     stub_request(:get, "https://api.giphy.com/v1/gifs/search?api_key=#{ENV['GIPHY_API_KEY']}&q=Mostly%20cloudy%20throughout%20the%20day.").
       to_return(status: 200, body: mostly_cloudy)
+
+    partly_cloudy = File.open('./spec/fixtures/partly_cloudy.json')
+    stub_request(:get, "https://api.giphy.com/v1/gifs/search?api_key=#{ENV['GIPHY_API_KEY']}&q=Partly%20cloudy%20throughout%20the%20day.").
+      to_return(status: 200, body: partly_cloudy)
 
     geocoding = File.open('./spec/fixtures/geocoding.json')
     stub_request(:get, "https://maps.googleapis.com/maps/api/geocode/json?address=denver,co&key=#{ENV['GOOGLE_API_KEY']}").
