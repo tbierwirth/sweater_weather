@@ -35,7 +35,9 @@ RSpec.describe GoogleService do
 
         gifs = GifService.new.get_gifs(forecast)
 
-        expect(gifs[0][:url]).to eq("https://giphy.com/gifs/dark-castle-63xBFHKNVjZlu")
+        expect(gifs[0].url).to eq("https://giphy.com/gifs/dark-castle-63xBFHKNVjZlu")
+        expect(gifs[0].summary).to eq("Mostly cloudy throughout the day.")
+        expect(gifs[0].time).to eq(1568527200)
       end
     end
   end
