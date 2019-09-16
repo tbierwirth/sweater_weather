@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe GoogleService do
   before :each do
     mostly_cloudy = File.open('./spec/fixtures/partly_cloudy.json')
-    stub_request(:get, "api.giphy.com/v1/gifs/search?api_key=#{ENV['GIPHY_API_KEY']}?q=Mostly cloudy throughout the day.").
+    stub_request(:get, "https://api.giphy.com/v1/gifs/search?api_key=#{ENV['GIPHY_API_KEY']}&q=Mostly%20cloudy%20throughout%20the%20day.").
       to_return(status: 200, body: mostly_cloudy)
 
     geocoding = File.open('./spec/fixtures/geocoding.json')
