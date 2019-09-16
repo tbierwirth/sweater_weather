@@ -12,7 +12,15 @@ class GifSearch
     end
   end
 
-  def copyright
-    'copyright: "2019"'
+  def response
+    {
+      data: {
+        images:
+          get_gifs.map do |gif|
+            GifSerializer.new(gif)
+          end
+      },
+      copyright: "2019"
+    }
   end
 end
