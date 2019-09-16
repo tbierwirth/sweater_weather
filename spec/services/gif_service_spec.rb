@@ -32,12 +32,10 @@ RSpec.describe GoogleService do
         coords = response[:results].first[:geometry][:location]
 
         forecast = DarkSkyService.new.forecast(coords[:lat],coords[:lng])[:daily]
+        summary = forecast[:data][0][:summary]
+        gif = GifService.new.get_gif(summary)
 
-        gifs = GifService.new.get_gifs(forecast)
-
-        expect(gifs[0].url).to eq("https://giphy.com/gifs/dark-castle-63xBFHKNVjZlu")
-        expect(gifs[0].summary).to eq("Mostly cloudy throughout the day.")
-        expect(gifs[0].time).to eq(1568527200)
+        expect(gif[0][:url]).to eq("https://giphy.com/gifs/dark-castle-63xBFHKNVjZlu")
       end
     end
   end
