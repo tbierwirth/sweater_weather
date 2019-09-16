@@ -25,6 +25,7 @@ describe 'Users API' do
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
+      expect(User.last).to eq(nil)
     end
 
   end
