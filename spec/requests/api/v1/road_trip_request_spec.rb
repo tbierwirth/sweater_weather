@@ -31,12 +31,15 @@ describe 'Road Trip API' do
       post '/api/v1/road_trip', params: request
 
       expect(response).to be_successful
-      forecast = response.body
+      roadtrip = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
 
-      expect(forecast[:summary]).to eq("Clear")
-      expect(forecast[:temperature]).to eq("71.18")
-      expect(forecast[:humidity]).to eq("0.44")
-      expect(forecast[:precipitation_chance]).to eq("0.11")
+      expect(roadtrip[:origin]).to eq("Denver,CO")
+      expect(roadtrip[:destination]).to eq("Pueblo,CO")
+      expect(roadtrip[:duration]).to eq("1 hour 46 mins")
+      expect(roadtrip[:summary]).to eq("Clear")
+      expect(roadtrip[:temperature]).to eq(73.68)
+      expect(roadtrip[:humidity]).to eq(0.39)
+      expect(roadtrip[:precipitation_chance]).to eq(0)
     end
   end
 end
