@@ -1,8 +1,10 @@
 class RoadTrip
-  attr_reader :id, :destination, :summary, :temperature, :humidity, :precipitation_chance
+  attr_reader :id, :origin, :destination, :duration, :summary, :temperature, :humidity, :precipitation_chance
   def initialize(origin, destination)
     @origin = origin
     @destination = destination
+    @origin = origin
+    @duration = directions[:text]
     @id = forecast[:time]
     @summary = forecast[:summary]
     @temperature = forecast[:temperature]
@@ -11,9 +13,13 @@ class RoadTrip
   end
 
   def forecast
-    duration = GoogleService.new.get_duration(@origin, @destination)
+    duration = directions[:value]
     time = (duration + Time.now.to_i)
     coords = GoogleService.new.coordinates(@destination)[:results][0][:geometry][:location]
     DarkSkyService.new.forecast_at(time, coords[:lat], coords[:lng])[:currently]
+  end
+
+  def directions
+    @_directions = GoogleService.new.get_duration(@origin, @destination)
   end
 end
