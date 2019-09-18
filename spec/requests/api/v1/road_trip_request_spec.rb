@@ -41,5 +41,17 @@ describe 'Road Trip API' do
       expect(roadtrip[:humidity]).to eq(0.39)
       expect(roadtrip[:precipitation_chance]).to eq(0)
     end
+    it "can not get a road_trip response with an invalid key" do
+      User.create!(email: "billgates@gmail.com", password: "microsoft")
+      request = {
+      "origin": "Denver,CO",
+      "destination": "Pueblo,CO",
+      "api_key": "12313kj213j"
+      }
+
+      post '/api/v1/road_trip', params: request
+
+      expect(response).to_not be_successful
+    end
   end
 end
