@@ -27,7 +27,8 @@ RSpec.describe GoogleService do
         destination = "Pueblo, CO"
         service = GoogleService.new
         duration = service.get_duration(origin, destination)
-        expect(duration).to eq(6383)
+        expect(duration[:value]).to eq(6383)
+        expect(duration[:text]).to eq("1 hour 46 mins")
       end
     end
   end
