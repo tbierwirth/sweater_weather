@@ -1,7 +1,7 @@
 class Api::V1::BackgroundsController < ApplicationController
   def index
     images = Rails.cache.fetch("images/#{location}", expires_in: 3.minutes) do
-      BingService.new(location).get_images
+      BingFacade.new(location).get_images
     end
 
     render json: ImagesSerializer.new(images)
