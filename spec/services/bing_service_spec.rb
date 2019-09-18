@@ -13,7 +13,7 @@ RSpec.describe BingService do
         location = "denver,co"
         service = BingService.new(location)
         images = service.get_images
-        expect(images.first.url).to eq("https://static.pexels.com/photos/110924/pexels-photo-110924.jpeg")
+        expect(images.first[:contentUrl]).to eq("https://static.pexels.com/photos/110924/pexels-photo-110924.jpeg")
       end
     end
   end

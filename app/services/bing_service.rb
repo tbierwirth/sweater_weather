@@ -5,10 +5,7 @@ class BingService
   end
 
   def get_images
-    images = get_json[:value]
-    images.map do |image|
-      BackgroundImage.new(image)
-    end
+    get_json[:value]
   end
 
   private
