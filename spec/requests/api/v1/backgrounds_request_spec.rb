@@ -10,7 +10,7 @@ describe 'Backgrounds API' do
     stub_request(:get, "https://maps.googleapis.com/maps/api/geocode/json?address=denver,co&key=#{ENV['GOOGLE_API_KEY']}").
       to_return(status: 200, body: geocoding)
   end
-  it 'sends forecast given city,state' do
+  it 'sends images given city,state' do
     get '/api/v1/backgrounds?location=denver,co'
 
     expect(response).to be_successful
